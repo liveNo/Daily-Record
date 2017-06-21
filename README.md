@@ -8,3 +8,4 @@
 - MongoDB-Repli ： MongoDB-Repli 副本集的介绍
 - Vim-Tutorial  ： Vim 基础的教程及常用插件
 - MongoDB 项目中的应用： MongoDB 在项目中的一些应用
+- BCD码	： 十进制数的二进制编码（Binary Coded Decimal），主要简单介绍下BCD码
