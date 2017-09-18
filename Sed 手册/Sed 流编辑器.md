@@ -1,7 +1,4 @@
 # Sed 基础使用
-> http://www.gnu.org/software/sed/manual/sed.html#Introduction
-
-
 ## 简介
 `sed`是一款流编辑器。流编辑器用于对输出流或者文件进行基本的文本转换。在某些方面类似于允许脚本编辑的编辑器，但是`sed`只能运行一次编辑，因此效率也比较高。但是`sed`的过滤能力是其一大特色，这有区别与其他类型的编辑器，因此，玩`sed`的人，正则表达式的能力也相对较强。
 
@@ -137,3 +134,63 @@ sed "s/<.*>//g" h.html
 ```
 sed "s/<[^>]*>//g" h.html  # 结果：I am Joey, And I like basketball haha
 ```
+
+### sed 命令摘要
+
+**a命令和i命令**
+> a命令就是append， i命令就是insert，它们是用来添加行的
+
+```
+# 其中的1i表明，其要在第1行前插入一行（insert）
+$ sed "1 i Hello Kitty, Hi Baby" input.txt
+Hello Kitty, Hi Baby
+hello world, hello China
+hello Tom
+hello kity
+hello Jim
+This is my cat
+
+# 其中的1a表明，其要在最后一行后追加一行（append）
+$ sed "$ a Hello Vitory, Hi Mam" input.txt
+hello world, hello China
+hello Tom
+hello kity
+hello Jim
+This is my cat
+Hello Vitory, Hi Mam
+
+# 匹配到/hello/后就追加一行
+$ sed "/hello/a Hello Vitory, Hi Mam" input.txt
+hello world, hello China
+Hello Vitory, Hi Mam
+hello Tom
+Hello Vitory, Hi Mam
+hello kity
+Hello Vitory, Hi Mam
+hello Jim
+Hello Vitory, Hi Mam
+This is my cat
+```
+
+**c命令**
+> 替换匹配行
+
+```
+$ sed "2 c Hello Vitory, Hi Mam" input.txt
+hello world, hello China
+Hello Vitory, Hi Mam  # 原来是 hello Tom
+hello kity
+hello Jim
+This is my cat
+```
+
+**d命令**
+> 删除匹配行
+
+```
+$ sed "2 d " input.txt # 删除第二行
+$ sed '3,$d' input.txt # 删除第三行到最后一行
+```
+
+## 后语
+这些算是工作中比较常用的一些命令了， `sed`与`awk`是在工作中经常会用到的一些用法。当然，如果你想更加深入的了解`sed`，请移步：http://www.gnu.org/software/sed/manual/sed.html。这里面有非常详细的说明与用法。
