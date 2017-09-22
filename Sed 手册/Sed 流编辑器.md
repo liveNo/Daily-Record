@@ -193,4 +193,4 @@ $ sed '3,$d' input.txt # 删除第三行到最后一行
 ```
 
 ## 后语
-这些算是工作中比较常用的一些命令了， `sed`与`awk`是在工作中经常会用到的一些用法。当然，如果你想更加深入的了解`sed`，请移步：http://www.gnu.org/software/sed/manual/sed.html。这里面有非常详细的说明与用法。
+这些算是工作中比较常用的一些命令了， `sed`与`awk`是在工作中经常会用到的一些用法。当然，如果你想更加深入的了解`sed`，请移步：http://www.gnu.org/software/sed/manual/sed.html 这里面有非常详细的说明与用法。
