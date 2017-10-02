@@ -30,4 +30,49 @@ config.vm.hostname = "bogon"
 
 **虚拟机网络配置**
 
-Vagrant 有三种网络连接方式
+Vagrant 有三种网络连接方式:
+
+- 端口转发 （Forwarded port）
+	
+	> Vagrant 端口转发允许你通过一个端口与虚拟机端口映射来做相应的访问响应，且是通过TCP或者是UDP。当然，默认的是使用TCP协议来通信。
+
+```
+Vagrant.configure("2") do |config|
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+end
+```
+
+以上配置是允许主机的80端口映射到虚拟机的8080端口。在上文我们也提到过可以通过Virtual Box来设置端口之间的转发，但是只是临时可用，但是当虚拟机重启后，端口的转发就会失效。
+
+```
+Vagrant.configure("2") do |config|
+  config.vm.network "forwarded_port", guest: 2003, host: 12003, protocol: "tcp"
+  config.vm.network "forwarded_port", guest: 2003, host: 12003, protocol: "udp"
+end
+```
+
+- 私有网络 （Private Network）
+	- DHCP
+	- 静态ip
+	- Ipv6
+
+```
+# DHCP
+Vagrant.configure("2") do |config|
+  config.vm.network "private_network", type: "dhcp"
+end
+
+# Static IP
+Vagrant.configure("2") do |config|
+  config.vm.network "private_network", ip: "192.168.50.4"
+end
+
+# IPv6
+Vagrant.configure("2") do |config|
+  config.vm.network "private_network", ip: "fde4:8dba:82e1::c4"
+end
+```	
+
+- 公有网络 （Public Network）
+
+	> 公用网络配置ip类似与私有网络。
